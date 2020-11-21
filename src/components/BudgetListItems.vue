@@ -1,6 +1,5 @@
 <template>
   <div class="list-items">
-    <ElCard>
       <template v-if="!isEmpty">
         <div class="list-item" v-for="(item, prop) in list" :key="prop">
           <span class="budget-comment">{{ item.comment }}</span>
@@ -9,7 +8,6 @@
         </div>
       </template>
         <ElAlert v-else type="info" :title="emptyTitle" :closable="false" />
-    </ElCard>
   </div>
 </template>
 <script>
@@ -47,9 +45,5 @@ export default {
   font-weight: bold;
   margin-left: auto;
   margin-right: 20px;
-}
-.list-items {
-  max-width: 500px;
-  margin: auto;
 }
 </style>
