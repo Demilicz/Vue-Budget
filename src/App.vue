@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <Dialog/>
   <Form @submitForm="onFormSubmit" />
   <TotalBalance :total="totalBalance" />
   <BudgetList :list="list"/>
@@ -10,6 +11,7 @@
 import BudgetList from "@/components/BudgetList";
 import TotalBalance from "@/components/TotalBalance";
 import Form from "@/components/Form";
+import Dialog from "@/components/Dialog";
 
 
 
@@ -19,6 +21,7 @@ export default {
     BudgetList,
     TotalBalance,
     Form,
+    Dialog
   },
   data: () => ({
     list: {
