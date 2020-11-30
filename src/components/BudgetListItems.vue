@@ -4,7 +4,7 @@
         <div class="list-item" v-for="(item, prop) in list" :key="prop">
           <span class="budget-comment">{{ item.comment }}</span>
           <span class="budget-value">{{ item.value }}</span>
-          <ElButton type="danger" size="mini" @click="deleteItem(item.id)">Delete</ElButton>
+          <ElButton type="danger" size="mini" @click="wiewDialog(true, item.id)">Delete</ElButton>
         </div>
       </template>
         <ElAlert v-else type="info" :title="emptyTitle" :closable="false" />
@@ -17,19 +17,29 @@ export default {
     list: {
       type: Object,
       default: () => ({})
+    },
+    centerDialogVisible:{
+      type: Boolean,
+      default: false,
+      required: true
     }
   },
   data: () => ({
-    emptyTitle: "Empty List"
+    emptyTitle: "Empty List",
+   
   }),
   computed: {
-    isEmpty() {
-      return !Object.keys(this.list).length;
+  isEmpty() {
+    return !Object.keys(this.list).length;
     }
   },
+
   methods: {
-    deleteItem(id) {
-      this.$emit("deleteItem", id);
+    // deleteItem(id) {
+    //   this.$emit("deleteItem", id);
+    // },
+    wiewDialog(visible, id) {
+      this.$emit("wiewDialog",visible, id);
     }
   }
 }
