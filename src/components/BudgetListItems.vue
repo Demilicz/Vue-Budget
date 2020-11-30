@@ -3,7 +3,10 @@
       <template v-if="!isEmpty">
         <div class="list-item" v-for="(item, prop) in list" :key="prop">
           <span class="budget-comment">{{ item.comment }}</span>
-          <span class="budget-value">{{ item.value }}</span>
+          <span class="budget-value" :class="item.type === 'INCOME'? 'green':'red'" >{{ item.value }}
+            <i v-if="item.type === 'INCOME'" class="el-icon-top" dir="ltr"></i>
+            <i v-else class="el-icon-bottom"></i>
+          </span>
           <ElButton type="danger" size="mini" @click="wiewDialog(true, item.id)">Delete</ElButton>
         </div>
       </template>
@@ -26,7 +29,6 @@ export default {
   },
   data: () => ({
     emptyTitle: "Empty List",
-   
   }),
   computed: {
   isEmpty() {
@@ -35,12 +37,11 @@ export default {
   },
 
   methods: {
-    // deleteItem(id) {
-    //   this.$emit("deleteItem", id);
-    // },
+
     wiewDialog(visible, id) {
       this.$emit("wiewDialog",visible, id);
-    }
+    },
+
   }
 }
 </script>
@@ -55,5 +56,11 @@ export default {
   font-weight: bold;
   margin-left: auto;
   margin-right: 20px;
+}
+.green {
+  color:green;
+}
+.red {
+  color: red;
 }
 </style>
