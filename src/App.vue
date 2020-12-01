@@ -36,7 +36,7 @@ export default {
         id: 2
       }
     },
-    
+
 
   }),
   computed: {
@@ -45,7 +45,8 @@ export default {
         (acc, item) => acc + item.value,
         0
       );
-    }
+    },
+    
   },
   methods: {
     onFormSubmit(data) {

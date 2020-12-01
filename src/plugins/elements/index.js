@@ -11,7 +11,9 @@ import {
     Select,
     Option,
     Alert,
-    Dialog 
+    Dialog,
+    ButtonGroup
+
 } from 'element-ui';
 
 const elements = [
@@ -23,7 +25,8 @@ const elements = [
     Select,
     Option,
     Alert,
-    Dialog
+    Dialog,
+    ButtonGroup
 ];
 
 locale.use(lang);

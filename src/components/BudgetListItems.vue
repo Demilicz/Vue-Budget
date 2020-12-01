@@ -1,7 +1,7 @@
 <template>
   <div class="list-items">
       <template v-if="!isEmpty">
-        <div class="list-item" v-for="(item, prop) in list" :key="prop">
+        <div class="list-item" v-for="(item, prop) in sortItems(list,target)" :key="prop">
           <span class="budget-comment">{{ item.comment }}</span>
           <span class="budget-value" :class="item.type === 'INCOME'? 'green':'red'" >{{ item.value }}
             <i v-if="item.type === 'INCOME'" class="el-icon-top" dir="ltr"></i>
@@ -25,6 +25,10 @@ export default {
       type: Boolean,
       default: false,
       required: true
+    },
+    target: {
+      type: String,
+      default: "ALL"
     }
   },
   data: () => ({
@@ -33,7 +37,8 @@ export default {
   computed: {
   isEmpty() {
     return !Object.keys(this.list).length;
-    }
+    },
+
   },
 
   methods: {
@@ -41,6 +46,31 @@ export default {
     wiewDialog(visible, id) {
       this.$emit("wiewDialog",visible, id);
     },
+    sortItems(list,tar){
+      if(tar === "INCOME"){
+       const newObj = Object.values({...list}).reduce((acc,item, index) =>
+       {if(item.type === tar)  acc[index] = item;
+
+       return acc;
+       },
+       {});
+
+       console.log(newObj);
+      return newObj;
+      }
+      else if (tar === "OUTCOME"){
+      const newObj = Object.values({...list}).reduce((acc,item, index) =>
+       {if(item.type === tar)  acc[index] = item;
+
+       return acc;
+       },
+       {});
+
+       console.log(newObj);
+      return newObj;
+      }
+      else return list;
+    }
 
   }
 }

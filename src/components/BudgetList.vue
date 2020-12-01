@@ -1,20 +1,28 @@
 <template>
       <div class="budget-list-wrap">
-        <ElCard :header="header">
+        <ElCard>
+          {{sort}}
+          <el-button-group>
+            <el-button type="primary" icon="el-icon-top"  @click="target='INCOME'">Income</el-button>
+            <el-button type="primary" icon="el-icon-bottom" @click="target='OUTCOME'">Outcome</el-button>
+            <el-button type="primary" icon="el-icon-check"  @click="target='ALL'">All</el-button>
+          </el-button-group>
+        </ElCard>
+        <ElCard  :header="header">
           <div>
             <el-dialog
             title="Warning"
             :visible.sync="centerDialogVisible"
             width="30%"
             center>
-              <span>It should be noted that the content will not be aligned in center by default</span>
+              <span>Are you sure you want to delete this item?</span>
               <span slot="footer" class="dialog-footer">
                 <el-button @click="cancelDialog(false)">Cancel</el-button>
                 <el-button type="primary" @click="onDeleteItem(newId)">Confirm</el-button>
               </span>
             </el-dialog>
           </div>
-      <BudgetListItems @deleteItem="onDeleteItem" @wiewDialog="onDialogShow" :list="list" :centerDialogVisible="centerDialogVisible"/>
+      <BudgetListItems @deleteItem="onDeleteItem" @wiewDialog="onDialogShow" :target="target" :list="list" :centerDialogVisible="centerDialogVisible"/>
     </ElCard>
   </div>
 </template>
@@ -26,9 +34,11 @@ import BudgetListItems from "@/components/BudgetListItems";
 export default {
   name: "BudgetList",
   data: () => ({
+    sort: "Show :",
     header: "Budget List",
     centerDialogVisible: false,
-    newId: "Some id"
+    newId: "Some id",
+    target: "All"
   }),
   props: {
     list: {
@@ -51,9 +61,13 @@ export default {
     },
     cancelDialog(bool){
       this.centerDialogVisible = bool;
-    }
+    },
+   },
+   computed:{
+
+   }
   }
-}
+
 
 </script>
 
