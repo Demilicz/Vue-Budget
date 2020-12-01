@@ -23,13 +23,17 @@ export default {
   name: "Form",
   data () {
     const checkType = (rule, value, callback) => {
-      if(this.formData.type === "INCOME" && value < 0)
+       if(value !== 0 )
       {
-        callback(new Error('Value must be more than 0'));
+        callback(new Error('Value must  be more or less than 0'))
+      }
+      else if(this.formData.type === "INCOME" && value < 0)
+      {
+        callback(new Error('Income must be more than 0'));
       }
       else if(this.formData.type === "OUTCOME" && value > 0)
       {
-        callback(new Error('Value must be less than 0'));
+        callback(new Error('Outcome must be less than 0'));
       }
       else callback();
     }
