@@ -23,7 +23,7 @@ export default {
   name: "Form",
   data () {
     const checkType = (rule, value, callback) => {
-       if(value !== 0 )
+       if(value === 0 )
       {
         callback(new Error('Value must  be more or less than 0'))
       }
