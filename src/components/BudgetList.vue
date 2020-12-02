@@ -29,6 +29,7 @@
 
 <script>
 import BudgetListItems from "@/components/BudgetListItems";
+import { mapGetters } from 'vuex';
 
 
 export default {
@@ -52,7 +53,7 @@ export default {
   },
   methods:{
     onDeleteItem(id) {
-      this.$delete(this.list, id);
+      this.$delete(this.listToDo, id);
       this.cancelDialog(false);
     },
     onDialogShow(visible , id ){
@@ -64,7 +65,7 @@ export default {
     },
    },
    computed:{
-
+     ...mapGetters('listItems', ['listToDo']),
    }
   }
 

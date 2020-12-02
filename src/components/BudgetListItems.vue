@@ -1,7 +1,7 @@
 <template>
   <div class="list-items">
       <template v-if="!isEmpty">
-        <div class="list-item" v-for="(item, prop) in sortItems(list,target)" :key="prop">
+        <div class="list-item" v-for="(item, prop) in sortItems(listToDo,target)" :key="prop">
           <span class="budget-comment">{{ item.comment }}</span>
           <span class="budget-value" :class="item.type === 'INCOME'? 'green':'red'" >{{ item.value }}
             <i v-if="item.type === 'INCOME'" class="el-icon-top" dir="ltr"></i>
@@ -13,7 +13,9 @@
         <ElAlert v-else type="info" :title="emptyTitle" :closable="false" />
   </div>
 </template>
+
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "BudgetListItems",
   props: {
@@ -35,8 +37,9 @@ export default {
     emptyTitle: "Empty List",
   }),
   computed: {
+  ...mapGetters('listItems', ['listToDo']),
   isEmpty() {
-    return !Object.keys(this.list).length;
+    return !Object.keys(this.listToDo).length;
     },
 
   },
