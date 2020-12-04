@@ -1,3 +1,4 @@
+import Vue from "vue";
 const listItems = {
   namespaced: true,
   state:{
@@ -19,8 +20,17 @@ const listItems = {
   getters :{
     listToDo: ({ list }) => {return list }
   },
-  mutations:{},
-  actions:{}
+  mutations:{
+    ADD_ITEM(state, item){
+      Vue.set(state.list, item.id, item)
+    }
+  },
+  actions:{
+    addNewItem ({commit}, item){
+      const newItem = { ...item , id: String(Math.random())};
+      commit("ADD_ITEM", newItem);
+    }
+  }
 };
 
 export default listItems;

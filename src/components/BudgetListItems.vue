@@ -19,10 +19,6 @@ import { mapGetters } from 'vuex';
 export default {
   name: "BudgetListItems",
   props: {
-    list: {
-      type: Object,
-      default: () => ({})
-    },
     centerDialogVisible:{
       type: Boolean,
       default: false,

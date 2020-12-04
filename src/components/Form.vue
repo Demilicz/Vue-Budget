@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
   name: "Form",
   data () {
@@ -59,10 +60,13 @@ export default {
   };
   },
   methods: {
+    ...mapActions('listItems', ['addNewItem']),
     onSubmit() {
       this.$refs.addItemForm.validate(valid => {
         if (valid) {
-          this.$emit("submitForm", { ...this.formData });
+          console.log({ ...this.formData });
+
+          this.addNewItem({ ...this.formData });
           this.$refs.addItemForm.resetFields();
         }
       });

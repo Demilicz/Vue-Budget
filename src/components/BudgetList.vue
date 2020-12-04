@@ -22,7 +22,7 @@
               </span>
             </el-dialog>
           </div>
-      <BudgetListItems @deleteItem="onDeleteItem" @wiewDialog="onDialogShow" :target="target" :list="list" :centerDialogVisible="centerDialogVisible"/>
+      <BudgetListItems @deleteItem="onDeleteItem" @wiewDialog="onDialogShow" :target="target" :centerDialogVisible="centerDialogVisible"/>
     </ElCard>
   </div>
 </template>
@@ -41,12 +41,6 @@ export default {
     newId: "Some id",
     target: "All"
   }),
-  props: {
-    list: {
-      type: Object,
-      default: () => ({})
-    }
-  },
   components:{
     BudgetListItems,
 
